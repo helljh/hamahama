@@ -1,0 +1,74 @@
+.login {
+    margin: 5rem auto;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
+    width: 25rem;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    background-color: white;
+}
+.spacing {
+    margin-bottom: 2rem;
+}
+
+.control {
+    margin-bottom: 0.5rem;
+}
+
+.control input {
+    display: block;
+    width: 20rem;
+    margin: auto;
+    border-radius: 4px;
+    padding: 0.25rem;
+    border: 1px solid #ccc;
+}
+
+.img {
+    border-radius: 100%;
+    width: 2.5rem;
+    margin-right: 1rem;
+    
+}
+.hr {
+    display: flex;
+    flex-basis: 100%;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.35);
+    font-size: 12px;
+    margin: 8px 0px;
+    margin-bottom: 1.5rem;
+    }
+    .hr::before,
+    .hr::after {
+        content: "";
+        flex-grow: 1;
+        background: rgba(0, 0, 0, 0.35);
+        height: 1px;
+        font-size: 0px;
+        line-height: 0px;
+        margin: 0px 16px;
+    }
+
+.button {
+    background-color: #00C4FF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    width: 20rem;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+}
+
+.span {
+    display: flex;
+    align-items: center;
+}
+
+.kakaoButton {
+    border: none;
+    background-color: white;
+    
+}
+
