@@ -63,19 +63,23 @@
     margin-bottom: 0.5rem;
 }
 
-.span {
-    display: flex;
-    align-items: center;
-}
-
-.span h6{
-    padding-top:0.5em;
-    color: #E5D500;
-}
-
 .kakaoButton {
     border: none;
     background-color: white;
-    font-size: 12px;
+    font-size: 15px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
+.kakaoButton a{
+    text-decoration-line: none;
+    color: #E5D500;
+    font-size:18px;
+}
+
+.forgotPwd a{
+    text-decoration-line: none;
+    color: black;
+    font-size: 12px;
+}

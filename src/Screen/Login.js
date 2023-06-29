@@ -27,16 +27,12 @@ const Login = () => {
                     <button className={classes.button}>로그인</button>
                 </form>
                 <div className={classes.hr}>또는</div>
-                <button className={classes.kakaoButton}>
-                    <span className={classes.span}>
-                        <img className={classes.img} src='img/kakao.png' alt='kakao'></img>
-                        <h6>카카오톡으로 로그인</h6>
-                    </span>
-                </button>
-                <div>
-                    <button className={classes.kakaoButton}>
-                        <p>비밀번호를 잊으셨나요?</p>
-                    </button>
+                <div className={classes.kakaoButton}>
+                    <img className={classes.img} src='img/kakao.png' alt='kakao'></img>
+                    <a href="#">카카오톡으로 로그인</a>
+                </div>
+                <div className={classes.forgotPwd}>
+                    <a href="#">비밀번호를 잊으셨나요?</a>
                 </div>
             </section>
             
