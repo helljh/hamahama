@@ -1,0 +1,51 @@
+@font-face {
+  font-family: "nanum-regular";
+  src: url("../assets/fonts/NanumBarunGothic.ttf");
+  font-weight: 300;
+}
+@font-face {
+  font-family: "nanum-bold";
+  src: url("../assets/fonts/NanumBarunGothicBold.ttf");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "nanum-light";
+  src: url("../assets/fonts/NanumBarunGothicLight.ttf");
+  font-weight: 100;
+}
+@font-face {
+  font-family: "nanum-ultralight";
+  src: url("../assets/fonts/NanumBarunGothicUltraLight.ttf");
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: "notosans-medium";
+  src: url("../assets/fonts/NotoSansKR-Medium.otf");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "notosans-light";
+  src: url("../assets/fonts/NotoSansKR-Light.otf");
+  font-weight: 300;
+}
+
+:root {
+  --font-family-light: "notosans-light", Inter, Avenir, Helvetica, Arial,
+    sans-serif;
+  --font-family-regular: "notosans-medium", Inter, Avenir, Helvetica, Arial,
+    sans-serif;
+  /* --font-family-bold: "nanum-bold", Inter, Avenir, Helvetica, Arial, sans-serif;
+  --font-family-ultralight: "nanum-ultralight", Inter, Avenir, Helvetica, Arial,
+    sans-serif; */
+
+  font-size: 16px;
+  line-height: 22px;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
