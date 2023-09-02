@@ -12,7 +12,7 @@ export function SubCoupon({
   brandName: string;
 }) {
   const groupSize = 4; //분할 개수
-  const [currentPage, setCurrentPage] = useState(false); //페이지 번호
+  //const [currentPage, setCurrentPage] = useState(false); //페이지 번호
   const [couponData, setCouponData] = useState<GetCouponDataRes[]>([]);
   const [groups, setGroups] = useState<GetCouponDataRes[][]>([]);
   const getCouponList = useGetCouponList();
@@ -30,11 +30,10 @@ export function SubCoupon({
 
   // getCouponData -> flat: 내부 배열을 풀어줌
   useEffect(() => {
-    if (brandName) {
       getCouponList(brandName).then((res) => {
         if (res) {
           setCouponData(res);
-          const groups = mapDataInGroups(groupSize, couponData.flat());
+          const groups = mapDataInGroups(groupSize, couponData);
           setGroups(groups);
         } else {
           const groups = mapDataInGroups(groupSize, couponData_4.flat());
@@ -42,8 +41,7 @@ export function SubCoupon({
           alert("쿠폰 정보가 없습니다.");
         }
       });
-    }
-  }, []);
+  }, [couponData.length]);
 
   return (
     <S.Container>
@@ -52,31 +50,26 @@ export function SubCoupon({
           {group.map((coupon: GetCouponDataRes, idx: number) => (
             <S.Coupon key={idx}>
               <S.CouponInfo>
-                <S.Text style={{ fontFamily: "bold", fontSize: "13px" }}>
-                  {coupon.brandName}
-                </S.Text>
+                <S.BrandText>
+                  {brandName}
+                </S.BrandText>
                 <S.Text>{coupon.couponName}</S.Text>
-                <S.Text>
-                  <p style={{ fontSize: "3px", margin: "0 0 -10px 0" }}>
+                <S.DateText>
+                  <p>
                     {coupon.startDate}~
                   </p>
-                  <p style={{ fontSize: "3px" }}>{coupon.endDate}</p>
-                </S.Text>
+                  <p>{coupon.endDate}</p>
+                </S.DateText>
               </S.CouponInfo>
-              <S.BrandImg />
+              <S.BrandImgBox>
+                <S.BrandImg
+                    src={`${process.env.PUBLIC_URL}${coupon.brandImgUrl}`}
+                />
+              </S.BrandImgBox>
             </S.Coupon>
           ))}
         </S.CouponGroup>
       ))}
-      <S.Button
-        src={`${process.env.PUBLIC_URL}/img/coupon/${
-          currentPage ? "next" : "before"
-        }_Button.png`}
-        active={active}
-        onClick={() => {
-          setCurrentPage(!currentPage);
-        }}
-      />
     </S.Container>
   );
 }

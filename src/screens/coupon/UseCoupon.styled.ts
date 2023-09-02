@@ -39,8 +39,13 @@ export const TextWrapper2 = styled.div`
   white-space: nowrap;
 `;
 
+export const BrandName = styled.div`
+  margin-top: 20px;
+  margin-left: 40px;
+  font-size: 15px;
+`;
+
 export const Name = styled.div`
-  display: flex;
   margin-top: 20px;
   margin-left: 40px;
   font-size: 15px;

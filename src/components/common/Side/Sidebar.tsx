@@ -116,7 +116,7 @@ function Sidebar({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: any }) {
       else if(categoryName === "정보수정"){
         navigate("/user/help/profile");
       }else{
-        navigate(`/coupon/${categoryName}`);
+        navigate(`/${categoryName}/brands`);
         console.log("Clicked item category:", categoryName);
       }
       

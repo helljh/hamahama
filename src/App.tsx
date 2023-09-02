@@ -20,13 +20,12 @@ export function App() {
 
     { path: "/main", element: <main.MainScreen /> }, //메인 페이지
     {
-      path: "/coupon/brand/:brandName",
+      path: "/coupons/:brandName",
       element: <coupon.CouponBrandScreen />,
     }, //브랜드 쿠폰 페이지
-
     { path: "/user/me", element: <user.MyPageScreen /> }, //마이 페이지
     {
-      path: "/coupon/:categoryName",
+      path: "/:categoryName/brands",
       element: <coupon.CouponCategoryScreen />,
     }, //카테고리 브랜드 페이지
     { path: "/user/me/recent", element: <user.RecentCouponScreen /> },
@@ -38,7 +37,7 @@ export function App() {
     { path: "/brand/search", element: <brand.SearchBrandScreen /> }, //브랜드 찾기
     { path: "/brand/search/keyword", element: <brand.SearchResultScreen /> },
 
-    { path: "/usecoupon", element: <coupon.UseCoupon /> }, //쿠폰 사용하려고 할때 나오는 화면
+    { path: "coupon/details", element: <coupon.UseCoupon /> }, //쿠폰 사용하려고 할때 나오는 화면
     { path: "/writereview", element: <WriteReview /> }, //후기 작성
   ]);
 

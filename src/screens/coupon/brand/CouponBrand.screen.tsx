@@ -5,7 +5,7 @@ import * as S from "../category";
 export function CouponBrandScreen() {
   const { brandName } = useParams();
   const navigate = useNavigate();
-
+  console.log("브랜드명: " + brandName);
   if (!brandName) {
     alert("잘못된 경로입니다.");
     navigate("/home");

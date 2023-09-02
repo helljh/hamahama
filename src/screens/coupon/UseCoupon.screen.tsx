@@ -1,5 +1,54 @@
-import { useNavigate, useParams } from "react-router-dom";
+// import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+// import React, { useEffect, useState } from "react";
+// import * as S from "./UseCoupon.styled";
+// import { useGetCoupon, useGetMyPageCoupon } from "../../hooks";
+// import { GetCouponDataRes } from "../../services";
+// import { Layout } from "../../components/common/Layout";
+// import { Nav } from "../../components/common/Nav";
+// import LeftSide from "../../components/common/Side/LeftSide";
+
+// export function UseCoupon() {
+//   const [searchParams, setSearchParams] = useSearchParams();
+//   const couponId  = searchParams.get('couponId');
+//   console.log(couponId);
+//   const navigate = useNavigate();
+//   const [isStarClicked, setIsStarClicked] = useState(false);
+//   const [coupon, setCoupon] = useState<GetCouponDataRes | undefined>(undefined);
+//   const canEditCoupon = 1;
+//   const handleStarClick = () => {
+//     setIsStarClicked(!isStarClicked);
+//   };
+
+//   const getCoupon = useGetCoupon();
+//   const getMyPageCoupon = useGetMyPageCoupon();
+
+//   useEffect(() => {
+//     getCoupon(Number(couponId))
+//       .then((res) => {
+//         console.log(res);
+//         if (res) setCoupon(res);
+//       })
+//       .catch(() => {
+//         alert("유효하지 않은 쿠폰입니다.");
+//         navigate("../");
+//       });
+//   }, []);
+
+//   useEffect(() => {
+//     getMyPageCoupon("");
+//   });
+//   const handleEdit = () => {
+//     console.log("수정하기 버튼이 클릭되었습니다.");
+//     // 여기에 실제 수정하는 로직을 추가할 수 있습니다.
+//   };
+
+//   const handleRegister = () => {
+//     console.log("등록하기 버튼이 클릭되었습니다.");
+//     // 여기에 실제 등록하는 로직을 추가할 수 있습니다.
+//   };
+
 import React, { useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import * as S from "./UseCoupon.styled";
 import { useGetCoupon, useGetMyPageCoupon } from "../../hooks";
 import { GetCouponDataRes } from "../../services";
@@ -7,28 +56,14 @@ import { Layout } from "../../components/common/Layout";
 import { Nav } from "../../components/common/Nav";
 import LeftSide from "../../components/common/Side/LeftSide";
 
-const initialCouponData: GetCouponDataRes = {
-  couponId: 0,
-  couponName: "",
-  couponCode: "",
-  couponUrl: "",
-  brandName: "",
-  brandImgUrl: "",
-  description: "",
-  popularity: 0,
-  startDate: "",
-  endDate: "",
-  email:"",
-  likeCount: 0,
-  dislikeCount: 0,
-};
-
 export function UseCoupon() {
-  const { couponId } = useParams();
+  const [searchParams] = useSearchParams();
+  const couponId = searchParams.get("couponId");
   const navigate = useNavigate();
   const [isStarClicked, setIsStarClicked] = useState(false);
-  const [coupon, setCoupon] = useState<GetCouponDataRes>(initialCouponData);
+  const [coupon, setCoupon] = useState<GetCouponDataRes | undefined>(undefined);
   const canEditCoupon = 1;
+
   const handleStarClick = () => {
     setIsStarClicked(!isStarClicked);
   };
@@ -37,20 +72,30 @@ export function UseCoupon() {
   const getMyPageCoupon = useGetMyPageCoupon();
 
   useEffect(() => {
-    getCoupon(Number(couponId))
-      .then((res) => {
-        console.log(res);
-        //if (res) setCoupon(res);
-      })
-      .catch(() => {
+    const fetchCoupon = async () => {
+      if (!couponId) {
         alert("유효하지 않은 쿠폰입니다.");
         navigate("../");
-      });
-  }, []);
+        return;
+      }
+
+      try {
+        const res = await getCoupon(Number(couponId));
+        console.log(res);
+        if (res) setCoupon(res as GetCouponDataRes);
+      } catch (error) {
+        alert("쿠폰을 가져오는 중에 오류가 발생했습니다.");
+        navigate("../");
+      }
+    };
+
+    fetchCoupon();
+  }, [couponId, navigate, getCoupon]);
 
   useEffect(() => {
-    getMyPageCoupon("");
-  });
+    getMyPageCoupon(""); // 이 부분은 의도치 않은 호출로 보입니다. 의존성 배열이 필요합니다.
+  }, []); // 빈 의존성 배열을 사용하여 한 번만 실행되도록 변경
+
   const handleEdit = () => {
     console.log("수정하기 버튼이 클릭되었습니다.");
     // 여기에 실제 수정하는 로직을 추가할 수 있습니다.
@@ -61,6 +106,13 @@ export function UseCoupon() {
     // 여기에 실제 등록하는 로직을 추가할 수 있습니다.
   };
 
+  if (!coupon) {
+    // 쿠폰 데이터가 아직 로드되지 않은 경우 로딩 스피너 또는 메시지를 표시할 수 있습니다.
+    return <div>Loading...</div>;
+  }
+
+
+
   return (
     <Layout>
       <Nav />
@@ -69,6 +121,7 @@ export function UseCoupon() {
         <S.LContainer>
           <S.CouponWrapper>
             <S.TextWrapper>
+              <S.BrandName>{coupon.brandName}</S.BrandName> 
               <S.Name>{coupon.couponName}</S.Name>
               <S.Text>
                 <p style={{ fontSize: "3px", margin: "0 0 -10px 0" }}>

@@ -48,16 +48,18 @@ export function MainCoupon({ orderBy }: { orderBy: string }) {
               <S.CouponInfo>
                 <S.BrandText>{coupon.brandName}</S.BrandText>
                 <S.Text>{coupon.couponName}</S.Text>
-                <S.Text>
-                  <p style={{ fontSize: "3px", margin: "0 0 -10px 0" }}>
+                <S.DateText>
+                  <p>
                     {coupon.startDate}~
                   </p>
-                  <p style={{ fontSize: "3px" }}>{coupon.endDate}</p>
-                </S.Text>
+                  <p>{coupon.endDate}</p>
+                </S.DateText>
               </S.CouponInfo>
-              <S.BrandImg
-                src={`${process.env.PUBLIC_URL}${coupon.brandImgUrl}`}
-              />
+              <S.BrandImgBox>
+                <S.BrandImg
+                  src={`${process.env.PUBLIC_URL}${coupon.brandImgUrl}`}
+                />
+              </S.BrandImgBox>
             </S.Coupon>
           ))}
         </S.CouponGroup>

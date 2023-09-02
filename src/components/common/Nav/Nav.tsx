@@ -47,16 +47,21 @@ export const Nav: React.FC = () => {
           </S.DropdownButton>
           <S.Menu isDropped={FoodIsOpen}>
             <S.Ul>
-              <S.LinkWrapper isSelected={selectedItem === "식당"}>
-                <Link to={"/coupon/category/식당"}>식당</Link>
-              </S.LinkWrapper>
+              <S.Li isSelected={selectedItem === "식당"}>
+                <S.Link 
+                  href="/식당/brands"
+                  onClick={() => handleMenuItemClick("식당")} 
+                  >
+                  식당
+                </S.Link>
+              </S.Li>
               <S.Li isSelected={selectedItem === "카페"}>
-                <Link
-                  to={"/coupon/category/카페"}
+                <S.Link
+                  href="/카페/brands"
                   onClick={() => handleMenuItemClick("카페")}
                 >
                   카페
-                </Link>
+                </S.Link>
               </S.Li>
             </S.Ul>
           </S.Menu>
@@ -69,20 +74,20 @@ export const Nav: React.FC = () => {
           <S.Menu isDropped={CultureIsOpen}>
             <S.Ul>
               <S.Li isSelected={selectedItem === "여행"}>
-                <Link
-                  to={"/coupon/category/여행"}
+                <S.Link
+                  href="/여행/brands"
                   onClick={() => handleMenuItemClick("여행")}
                 >
                   여행
-                </Link>
+                </S.Link>
               </S.Li>
               <S.Li isSelected={selectedItem === "취미"}>
-                <Link
-                  to={"/coupon/category/취미"}
+                <S.Link
+                  href="/취미/brands"
                   onClick={() => handleMenuItemClick("취미")}
                 >
                   취미
-                </Link>
+                </S.Link>
               </S.Li>
             </S.Ul>
           </S.Menu>
@@ -95,28 +100,28 @@ export const Nav: React.FC = () => {
           <S.Menu isDropped={ShopIsOpen}>
             <S.Ul>
               <S.Li isSelected={selectedItem === "옷"}>
-                <Link
-                  to={"/coupon/category/옷"}
+                <S.Link
+                  href="/옷/brands"
                   onClick={() => handleMenuItemClick("옷")}
                 >
                   옷
-                </Link>
+                </S.Link>
               </S.Li>
               <S.Li isSelected={selectedItem === "신발"}>
-                <Link
-                  to={"/coupon/category/신발"}
+                <S.Link
+                  href="/신발/brands"
                   onClick={() => handleMenuItemClick("신발")}
                 >
                   신발
-                </Link>
+                </S.Link>
               </S.Li>
               <S.Li isSelected={selectedItem === "화장품"}>
-                <Link
-                  to={"/coupon/category/화장품"}
+                <S.Link
+                  href="/화장품/brands"
                   onClick={() => handleMenuItemClick("화장품")}
                 >
                   화장품
-                </Link>
+                </S.Link>
               </S.Li>
             </S.Ul>
           </S.Menu>

@@ -107,3 +107,10 @@ export const LinkWrapper = styled.div<{ isSelected: boolean }>`
   text-decoration: none;
   color: ${({ isSelected }) => (isSelected ? "#3C87BD" : "black")};
 `;
+
+export const Link = styled.a`
+  text-decoration: none;
+  color: black;
+`
+
+

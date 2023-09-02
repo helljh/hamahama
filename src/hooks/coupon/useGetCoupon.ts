@@ -25,9 +25,7 @@ export function useGetCoupon() {
 export function useGetCouponList() {
   const getCouponList = async (brandName: string) => {
     try {
-      const response = await axiosInstance.get(`/coupon/${brandName}/list`, {
-        headers: { "Content-type": "application/json" },
-      });
+      const response = await axiosInstance.get(`/coupon/${brandName}/list`);
       if (response) console.log(response);
       else console.log("no data");
       return response.data;

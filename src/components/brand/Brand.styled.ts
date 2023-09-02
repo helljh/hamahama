@@ -16,13 +16,14 @@ export const BrandGroup = styled.div`
 `;
 
 export const Brand = styled.div<{ brandImgUrl: string }>`
-  width: 120px;
-  height: 120px;
+  width: 150px;
+  height: 150px;
   margin: 0 30px 0 30px;
   cursor: pointer;
   background-image: ${({ brandImgUrl }) =>
     `url(${process.env.PUBLIC_URL}${brandImgUrl})`};
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+  border-radius: 100%;
 `;
