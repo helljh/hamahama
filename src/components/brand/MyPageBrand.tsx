@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useGetCategoryBrandList } from "../../hooks";
+import { useGetCategoryBrandList , useGetLikeBrand} from "../../hooks";
 import { GetBrandDataRes } from "../../services";
 import { tempBrandData } from "./";
 import * as S from "./Brand.styled";
@@ -10,6 +10,7 @@ export function MyPageBrand({ order }: { order: string }) {
   const [groups, setGroups] = useState<GetBrandDataRes[][]>([]);
 
   const getCategoryBrandList = useGetCategoryBrandList();
+  const getLikeBrandList = useGetLikeBrand();
 
   const mapDataInGroups = (groupSize: number, brandData: GetBrandDataRes[]) => {
     const groups = [];
@@ -23,7 +24,12 @@ export function MyPageBrand({ order }: { order: string }) {
     if (order === "random") {
       const groups = mapDataInGroups(groupSize, tempBrandData.flat());
       setGroups(groups);
-    } else {
+    }else if(order === "likeBrand") {
+      getLikeBrandList().then((res) => {
+        console.log(res);
+      })
+
+    }else {
       getCategoryBrandList(order).then((res) => {
         setBrandData(res);
         if (brandData) {

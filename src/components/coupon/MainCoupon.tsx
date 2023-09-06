@@ -18,6 +18,7 @@ export function MainCoupon({ orderBy }: { orderBy: string }) {
     for (let i = 0; i < couponData.length; i += groupSize) {
       groups.push(couponData.slice(i, i + groupSize));
     }
+    console.log(groups);
     return groups;
   };
 

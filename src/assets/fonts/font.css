@@ -2,19 +2,12 @@
     font-family: "SUIT-Bold";
     font-style: normal;
     font-weight: normal;
-    src: url("./SUIT-Bold.ttf") format("truetype");
+    src: url("./SUIT-Bold.otf") format("opentype");
 }
 
 @font-face {
     font-family: "SUIT-Light";
     font-style: normal;
     font-weight: normal;
-    src: url("./SUIT-Light.ttf") format("truetype");
-}
-
-@font-face {
-    font-family: "SUIT-ExtraBold";
-    font-style: normal;
-    font-weight: normal;
-    src: url("./SUIT-ExtraBold.ttf") format("truetype");
+    src: url("./SUIT-Light.otf") format("opentype");
 }

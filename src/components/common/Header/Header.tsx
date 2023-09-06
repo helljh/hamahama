@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import * as S from "./Header.styled";
 import Sidebar from "../Side/Sidebar";
 import { Search } from "../Search";
+
 import { useNavigate } from "react-router-dom";
 import {Link} from "react-router-dom";
 
@@ -11,18 +12,48 @@ export const Header = ({
 }: {
   isAuthenticated: boolean;
   logout: () => void;
-}) => {
+}) => {              
   const navigate = useNavigate();
+  const authToken = localStorage.getItem("authToken");
+  const initialData = JSON.parse(authToken as string);
   const [isOpen, setIsOpen] = useState(false);
   const [isBellOpen, setIsBellOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [keyword, setKeyword] = useState<string>("");
+  const [inputKeyword, setInputKeyword] = useState<string>("");
 
+  const outside = useRef<any>(null);
+
+  const onChangeData = (e:React.FormEvent<HTMLInputElement>) => {
+    setKeyword(e.currentTarget.value);
+    if(e.currentTarget.value.length != 0) {
+      setIsSearchOpen(true);
+    }else{
+      setIsSearchOpen(false);
+    }
+  }
+
+  // useEffect(() => {
+  //   document.addEventListener("mousedown", handlerOutsie);
+  //   return () => {
+  //     document.removeEventListener("mousedown", handlerOutsie);
+  //   };
+  // });
+
+  // const handlerOutsie = (e: any) => {
+  //   if (outside.current && !outside.current.contains(e.target as Node)) {
+  //     setIsSearchOpen(false);
+  //   }
+  // };
+
+  
   const toggleSide = () => {
-    setIsOpen(true);
+    setIsOpen(true); 
   };
+  
 
   const toggleBell = () => {
-    setIsBellOpen(!isBellOpen);
+    setIsBellOpen(false);
 
     if (!isBellOpen) {
       alert("알림이 도착했습니다.");
@@ -31,21 +62,42 @@ export const Header = ({
 
   const toggleSearch = () => {
     setIsSearchOpen(!isSearchOpen);
+    if(inputKeyword.length !=0){
+      navigate(`/coupons/${inputKeyword}`)
+    }else{
+      navigate(`/coupons/${keyword}`)
+    }
+   
   };
+
+  const setInputValue = (x: string) => {
+    setInputKeyword(x);
+  }
 
   return (
     <S.Container>
       <Link to={"/main"}><S.Logo src={`${process.env.PUBLIC_URL}/img/header/logo.svg`} /></Link>
+      <S.SearchBox>
       <S.InputWrapper>
-        <S.Input />
-        <S.SearchBtn
-          role="button"
-          src={`${process.env.PUBLIC_URL}/img/header/searchIcon.svg`}
-          onClick={toggleSearch}
+        <S.Input 
+        value={inputKeyword.length > 0 ? inputKeyword : keyword}
+        onChange={onChangeData}
         />
+        <S.Button onClick={toggleSearch}>
+          <S.SearchBtn
+            src={`${process.env.PUBLIC_URL}/img/header/searchIcon.svg`}
+          />
+        </S.Button>
+        
       </S.InputWrapper>
+      {isSearchOpen && (
+        <S.SearchList>
+          <Search setInputValue={setInputValue} keyword={keyword}/>
+        </S.SearchList>
+        )}
+      </S.SearchBox>
       <S.SubWrapper>
-        {isAuthenticated ? (
+        {!initialData.isAuthenticated ? (
           <S.Auth>
             <S.Text
               onClick={() => {
@@ -99,11 +151,6 @@ export const Header = ({
           <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
         </S.IconSet>
       </S.SubWrapper>
-      {isSearchOpen && (
-        <div style={{ marginTop: "0px", marginLeft: "470px" }}>
-          <Search />
-        </div>
-      )}
     </S.Container>
   );
 };

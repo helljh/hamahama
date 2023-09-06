@@ -29,34 +29,33 @@ export const Line = styled.div`
 
 export const LContainer = styled.div`
   display: flex;
-  flex-direction: column;
-
+  justify-content: center;
+  align-items: center;
   width: 592px;
   height: 491px;
   background-color: #eff9ff;
   border-radius: 10px;
-
   margin-top: 30px;
 `;
 
 export const CouponWrapper = styled.div`
+  position: relative;
   display: flex;
   flex-direction: row;
   background-image: url(${process.env.PUBLIC_URL}/img/coupon/coupon.svg);
   width: 397px;
   height: 170px;
-  margin-top: 170px;
-  margin-left: 50px;
 `;
 
 export const TextWrapper = styled.div`
-  margin-top: 0px;
-  margin-right: 0px;
-  display: flex;
-  justify-content: center;
+  display:flex;
   flex-direction: column;
-  align-items: center;
-  white-space: nowrap;
+  justify-content: space-evenly;
+  margin-left: 35px;
+  margin-top: 10px;
+  width: 200px;
+  height: auto;
+
 `;
 
 export const TextWrapper2 = styled.div`
@@ -68,20 +67,33 @@ export const TextWrapper2 = styled.div`
 `;
 
 export const Name = styled.div`
-  display: flex;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-left: 40px;
+  font-size: 15px;
+`;
+
+export const BrandName = styled.div`
+  font-family: SUIT-Bold;
+  font-size: 25px;
+`;
+
+export const CouponName = styled.div`
+  font-family: SUIT-Light;
+  height: 20px;
+  overflow: hidden;
   font-size: 15px;
 `;
 
 export const Logo = styled.img`
   // background-image: url(${process.env.PUBLIC_URL}/img/coupon/logo.svg);
+  position: absolute;
+  left: 17em;
+  top: 2em;
   display: flex;
-  width: 58px;
-  height: 50px;
-  margin-top: 60px;
-  margin-left: 90px;
-`;
+  width: 90px;
+  height: 90px;
+  border-radius: 70%;
+  `;
 
 export const RContainer = styled.div`
   display: flex;
@@ -92,6 +104,11 @@ export const Text = styled.div`
   display: flex;
   margin-top: 40px;
   margin-left: 30px;
+`;
+
+export const DateText = styled.div`
+  font-family: SUIT-Light;
+  font-size: 3px;
 `;
 
 export const ReviewBox = styled.div`
@@ -110,6 +127,8 @@ export const ReviewPage = styled.div`
 `;
 
 export const User = styled.textarea`
+  font-family: SUIT-Bold;
+  font-weight: bold;
   display: flex;
   outline: none;
   border: none;
@@ -118,6 +137,7 @@ export const User = styled.textarea`
   width: 413px;
   height: 173px;
   border-radius: 10px;
+  padding: 10px;
 `;
 
 export const Satisfaction = styled.div`

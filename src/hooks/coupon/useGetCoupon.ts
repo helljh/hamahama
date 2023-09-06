@@ -10,7 +10,6 @@ export function useGetCoupon() {
         `/coupon/${couponId}`
       );
       if (response) {
-        console.log(response.data);
         return response.data;
       } else console.log("no data");
     } catch (error) {
@@ -83,4 +82,22 @@ export function useGetOrderByCoupon() {
     }
   };
   return orderByCoupon;
+}
+
+//즐겨찾기한 쿠폰 아이디 가져오기
+export function usedGetLikeCoupon(){
+  const email = JSON.parse(localStorage.getItem("authToken") as string).userEmail;
+ const likeCoupon = async(
+    couponId : string,
+ ) => {
+  try{
+    const response = await axiosInstance.get(
+      `/couponLike/${email}/${couponId}`
+    );
+    if(response) return response;
+  } catch(error){
+    console.log(error);
+  }
+ };
+ return likeCoupon;
 }

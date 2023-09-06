@@ -33,15 +33,17 @@ export const CommentInfo = styled.div`
 `;
 
 export const Brand = styled.div`
-  font-weight: bold;
+  font-family: SUIT-Bold;
   margin-bottom: 10px;
 `;
 
 export const Coupon = styled.div`
+  font-family: SUIT-Light;
   font-size: 14px;
 `;
 
 export const Comment = styled.p`
+  font-family: SUIT-Light;
   font-size: 14px;
   line-height: 16px;
   overflow: hidden;

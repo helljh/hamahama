@@ -16,20 +16,31 @@ export const Container = styled.div`
 `;
 
 export const MainText = styled.h1`
-  font-family: nanum-bold;
+  font-family: SUIT-Bold;
   padding-top: 20px;
   margin-bottom: 90px;
 `;
 export const Text = styled.p`
-  font-family: nanum-bold;
+  font-family: SUIT-Bold;
   font-size: large;
-  margin-left: 60px;
 `;
 export const ViewText = styled.p`
-  font-family: nanum-light;
+  font-family: SUIT-Light;
   font-size: 12px;
   padding-top: 15px;
   cursor: pointer;
+  margin-right: 1em;
+  
+`;
+
+export const LikeText = styled.div`
+  display: flex;
+  flex-direction: row;
+  
+`;
+
+export const Link = styled.a`
+  text-decoration: none;
 `;
 export const TextGroup = styled.div`
   display: flex;
@@ -38,10 +49,12 @@ export const TextGroup = styled.div`
   margin: 0 40px -5px 60px;
 `;
 
-export const MyCoupon = styled.div``;
+export const MyCoupon = styled.div`
+  width: 100%;
+`;
 
 export const Line = styled.div`
-  width: 1095px;
+  width: auto;
   border: 1px solid #3c87bd;
-  margin: 0 0 70px 100px;
+  margin: 0 0 70px 50px;
 `;

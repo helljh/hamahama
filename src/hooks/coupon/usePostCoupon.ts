@@ -49,10 +49,16 @@ export function useDeleteCoupon() {
 
 //쿠폰 즐겨찾기
 export function usePostLikeCoupon() {
+  const authToken = localStorage.getItem("authToken");
+  const initialData = JSON.parse(authToken as string);
+  const email = initialData.userEmail;
   const postLikeCoupon = async (couponId: string) => {
     try {
-      await axiosInstance.delete(`/coupon/${couponId}/delete`, {});
-      alert("쿠폰 즐겨찾기가 등록되었습니다.");
+      const res = await axiosInstance.post(`/coupon/${email}/${couponId}/like`);
+      if(res){
+        console.log(res);
+        return res;
+      }
     } catch (error) {
       console.log(error);
     }

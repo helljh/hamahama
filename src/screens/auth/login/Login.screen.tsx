@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { usePostLogin } from "../../../hooks";
 import { PostLoginReq } from "../../../services";
 
@@ -23,11 +23,13 @@ export function LoginScreen() {
 
   return (
     <S.Container>
+      <Link to={"/main"}>
       <img
         style={{ width: "280px", height: "50px", marginTop: "90px" }}
         alt="Logo_IMG"
         src={`${process.env.PUBLIC_URL}/img/header/logo.svg`}
       />
+      </Link>
       <S.Ticket>
         <S.LoginForm>
           <S.InputForm>

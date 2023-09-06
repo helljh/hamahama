@@ -21,6 +21,7 @@ export function Brand({ category }: { category: string | null }) {
 
       const res = await getCategoryBrandList(category);
       setBrandData(res);
+      
 
       const groupedData = mapDataInGroups(groupSize, res);
       setGroups(groupedData);

@@ -62,19 +62,18 @@ export function useGetCategoryBrandList() {
 
 //브랜드 검색 리스트
 export function useGetSearchBrandList() {
-  const getSearchBrandList = async (searchKeyword: string) => {
+  const getSearchBrandList = async (searchKeyword: string) : Promise<GetBrandDataRes[] | undefined> => {
     try {
-      const res: GetBrandDataRes[] = await axiosInstance.get(
-        `brand/${searchKeyword}/brand`,
-        {
-          headers: { "Content-type": "application/json" },
-        }
+      const res = await axiosInstance.get(
+        `brand/search?keyword=${searchKeyword}`
       );
-      return res;
+     if(res){
+      return res.data;
+     }
     } catch (error) {
       console.log(error);
-      return;
     }
   };
   return getSearchBrandList;
 }
+

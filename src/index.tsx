@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 
 import { App } from "./App";
 
-import "./styles/globals.css";
+import "./assets/fonts/font.css";
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <App />

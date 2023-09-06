@@ -63,7 +63,7 @@ export function LeftSide() {
       </S.CategoryMenuBox>
       <S.CategoryMenuBox
         onClick={() => {
-          navigate("/user/me/recent");
+          navigate("/user/me/used");
         }}
       >
         <p>사용한 쿠폰</p>
@@ -77,10 +77,17 @@ export function LeftSide() {
       </S.CategoryMenuBox>
       <S.CategoryMenuBox
         onClick={() => {
+          navigate("/user/me/favor");
+        }}
+      >
+        <p>즐겨찾기</p>
+      </S.CategoryMenuBox>
+      <S.CategoryMenuBox
+        onClick={() => {
           navigate("/user/me"); //작성한 후기 페이지가 어디지
         }}
       >
-        <p>작성한 후기</p>
+        <p>내 댓글</p>
       </S.CategoryMenuBox>
     </S.Container>
   );

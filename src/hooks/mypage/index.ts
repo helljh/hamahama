@@ -1,5 +1,5 @@
 import { axiosInstance } from "../../apis";
-import { GetCommentDataRes, GetCouponDataRes } from "../../services";
+import { GetCommentDataRes, GetCouponDataRes, GetBrandDataRes } from "../../services";
 
 //마이페이지 댓글
 export function useGetMyPageInfo() {
@@ -22,15 +22,14 @@ export function useGetMyPageInfo() {
 
 //마이페이지 쿠폰
 export function useGetMyPageCoupon() {
+  const authToken = localStorage.getItem("authToken");
+  const initialData = JSON.parse(authToken as string);
   const getMyPageCoupon = async (order: string) => {
     try {
-      const res: GetCouponDataRes[] = await axiosInstance.get(
-        `mypage/${order}`,
-        {
-          headers: { "Content-type": "application/json" },
-        }
+      const res = await axiosInstance.get<GetCouponDataRes[]>(
+        `/mypage/${order}?email=${initialData.userEmail}`
       );
-      return res;
+      return res.data;
     } catch (error) {
       console.log(error);
       return;
@@ -38,3 +37,4 @@ export function useGetMyPageCoupon() {
   };
   return getMyPageCoupon;
 }
+

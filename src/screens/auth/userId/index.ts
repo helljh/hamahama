@@ -1,1 +1,1 @@
-export * from "./IdIncuiry.screen";
+export * from "./IdInquiry.screen";

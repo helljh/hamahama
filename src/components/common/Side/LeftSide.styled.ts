@@ -19,6 +19,7 @@ export const Info = styled.div`
 `;
 
 export const CategoryMenuBox = styled.div`
+  font-family: SUIT-Bold;
   font-size: 15px;
   display: flex;
   justify-content: flex-start;

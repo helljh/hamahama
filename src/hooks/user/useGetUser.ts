@@ -19,10 +19,12 @@ export function useGetLikeCoupon() {
 
 //즐겨찾기한 브랜드
 export function useGetLikeBrand() {
+  const authToken = localStorage.getItem("authToken");
+  const initialData = JSON.parse(authToken as string);
   const getLikeBrand = async () => {
     try {
       const res: GetBrandDataRes[] = await axiosInstance.get(
-        "mypage/likeBrand"
+        `mypage/likeBrand?email=${initialData.userEmail}`
       );
       return res;
     } catch (error) {

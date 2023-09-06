@@ -30,24 +30,21 @@ export const CouponInfo = styled.div`
   padding: 10px 0 10px 10px;
 `;
 export const Text = styled.div`
-  font-family: SUIT-Bold;
-  font-weight: 600;
+  font-family: SUIT-Light;
   font-size: smaller;
-  height:20px;
+  height:15px;
   margin: 10px 0 10px 15px;
   overflow: hidden;
 `;
 
 export const BrandText = styled.div`
-  font-family: SUIT-ExtraBold;
-  font-weight: 600;
+  font-family: SUIT-Bold;
   font-size: large;
   margin: 15px 0 10px 15px;
 `;
 
 export const DateText = styled.p`
   font-family: SUIT-Light;
-  font-weight: 500;
   font-size: 5px;
   line-height: 10px;
   margin: 5px 0 0 15px;
@@ -58,6 +55,7 @@ export const BrandImgBox = styled.div`
   left: 13.9em;
   top: 1.7em;
 `;
+
 export const BrandImg = styled.img`
   display: flex;
   justify-self: flex-end;

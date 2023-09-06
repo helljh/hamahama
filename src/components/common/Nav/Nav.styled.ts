@@ -36,6 +36,7 @@ export const DropdownContainer = styled.div`
 `;
 
 export const DropdownButton = styled.div`
+  font-family: SUIT-Bold;
   cursor: pointer;
 `;
 

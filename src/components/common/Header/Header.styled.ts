@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: start;
   justify-content: space-between;
   width: 100%;
   //height: 100%;
@@ -26,6 +27,10 @@ export const Input = styled.input`
   margin: 0px;
 `;
 
+export const Button = styled.button`
+  border:none;
+  background: none;
+`;
 export const SearchBtn = styled.img`
   width: 31px;
   height: 29px;
@@ -55,10 +60,18 @@ export const InputWrapper = styled.div`
   margin-left: 0px;
 `;
 
+export const SearchBox = styled.div`
+  display:flex;
+  flex-direction: column;
+`;
+
+export const SearchList = styled.div`
+  margin-left: 1em;
+`
 export const SubWrapper = styled.div`
+  margin-top: 1em;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
 `;
 
 export const Auth = styled.div`

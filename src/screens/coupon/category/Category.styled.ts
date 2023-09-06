@@ -18,7 +18,7 @@ export const MainText = styled.h1`
 export const Text = styled.p`
   display: flex;
   align-self: flex-start;
-  font-family: nanum-bold;
+  font-family: SUIT-Bold;
   font-size: large;
   margin: 70px 0 0 50px;
 `;

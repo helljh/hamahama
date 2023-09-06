@@ -3,3 +3,4 @@ export * from "./SubCoupon";
 export * from "./Coupon";
 export * from "./MyPageCoupon";
 export * from "./tempCouponData";
+export * from "./MyPageCouponDetail";

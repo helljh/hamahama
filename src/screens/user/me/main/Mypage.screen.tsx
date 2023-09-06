@@ -3,7 +3,7 @@ import {
   Coupon,
   MyPageCoupon,
   Screen,
-  Brand,
+  MyPageBrand,
   LeftSide,
 } from "../../../../components";
 import * as S from "./MyPage.styled";
@@ -65,7 +65,7 @@ export function MyPageScreen() {
               <S.Text>등록한 쿠폰</S.Text>
               <S.ViewText
                 onClick={() => {
-                  navigate("./");
+                  navigate("./create");
                 }}
               >
                 전체 보기
@@ -86,7 +86,7 @@ export function MyPageScreen() {
               </S.ViewText>
             </S.TextGroup>
             <S.Line />
-            <Brand category={"likeBrand"} />
+            <MyPageBrand order={"likeBrand"} />
           </S.MyCoupon>
         </S.Container>
       </S.Layout>

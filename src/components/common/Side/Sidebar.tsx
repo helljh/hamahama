@@ -34,6 +34,7 @@ const categoryNumbers: Record<string, number> = {
   화장품: 7,
   정보수정: 8,
   마이페이지: 9,
+  쿠폰등록: 10,
 };
 
 const items: MenuItem[] = [
@@ -55,6 +56,7 @@ const items: MenuItem[] = [
   getItem("내 정보", "sub2", null, [
     getItem("정보수정", "8"),
     getItem("마이페이지", "9"),
+    getItem("쿠폰등록", "10"),
   ]),
 ];
 
@@ -115,6 +117,8 @@ function Sidebar({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: any }) {
       }
       else if(categoryName === "정보수정"){
         navigate("/user/help/profile");
+      }else if(categoryName === "쿠폰등록"){
+        navigate("/coupon/registration");
       }else{
         navigate(`/${categoryName}/brands`);
         console.log("Clicked item category:", categoryName);

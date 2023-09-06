@@ -1,1 +1,1 @@
-export * from "./PwIncuiry.screen";
+export * from "./PwInquiry.screen";

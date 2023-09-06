@@ -27,21 +27,20 @@ export function usePostJoin() {
 }
 
 //이메일 인증코드
+
 export function usePostEmailConfirm() {
   const emailConfirm = async (email: PostEmailVerifyReq) => {
     try {
       //res => 인증코드, 가입가능여부(true)
-      const res: PostEmailVerifyRes = await axiosInstance.post(
+      const response = await axiosInstance.post<PostEmailVerifyRes>(
         "/user/register/mailConfirm",
         email,
         {
           headers: { "Content-type": "application/json" },
         }
-      );
-
-      if (res.status) alert("인증 요청이 완료되었습니다.");
-      else alert("이미 존재하는 이메일입니다.");
-    } catch (error) {
+      )
+      if (response) return response;
+    }catch (error) {
       alert(error);
     }
   };
@@ -53,9 +52,8 @@ export function useGetRegisterNickname() {
   const registerNickname = async (nickname: string) => {
     try {
       //res => 중복여부(true)
-      const res = await axiosInstance.post(`/user/register/${nickname}`, {
-        headers: { "Content-type": "application/json" },
-      });
+      const res = await axiosInstance.get(`/user/register/${nickname}`
+      );
       if (res.status) {
         alert("사용 가능한 닉네임입니다.");
         return res;
@@ -72,18 +70,17 @@ export function useGetRegisterNickname() {
 }
 
 //비밀번호 변경 URL
-export function usePostRessetPassword() {
-  const ressetPassword = async (data: PostResetPasswordReq) => {
+export function usePostResetPassword() {
+  const resetPassword = async (data: PostResetPasswordReq) => {
     try {
       await axiosInstance.post("/user/resetPassword", data, {
         headers: { "Content-type": "application/json" },
       });
-      alert("이메일을 확인해주세요.");
     } catch (error) {
       alert(error);
     }
   };
-  return ressetPassword;
+  return resetPassword;
 }
 
 //새 비밀번호 전송

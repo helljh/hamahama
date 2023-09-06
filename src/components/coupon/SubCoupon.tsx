@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import {useNavigate} from "react-router-dom";
 import { useGetCouponList } from "../../hooks";
 import { GetCouponDataRes } from "../../services";
 import * as S from "./SubCoupon.Styled";
@@ -16,6 +17,8 @@ export function SubCoupon({
   const [couponData, setCouponData] = useState<GetCouponDataRes[]>([]);
   const [groups, setGroups] = useState<GetCouponDataRes[][]>([]);
   const getCouponList = useGetCouponList();
+
+  const navigate = useNavigate();
 
   const mapDataInGroups = (
     groupSize: number,
@@ -48,10 +51,12 @@ export function SubCoupon({
       {groups.map((group, groupIndex) => (
         <S.CouponGroup key={groupIndex}>
           {group.map((coupon: GetCouponDataRes, idx: number) => (
-            <S.Coupon key={idx}>
+            <S.Coupon key={idx} onClick={()=>{
+              navigate(`/coupon/details?couponId=${coupon.couponId}`);
+            }}>
               <S.CouponInfo>
                 <S.BrandText>
-                  {brandName}
+                  {coupon.brandName}
                 </S.BrandText>
                 <S.Text>{coupon.couponName}</S.Text>
                 <S.DateText>
