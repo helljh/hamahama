@@ -100,7 +100,7 @@ export const Header = ({
       </S.InputWrapper>
       {isSearchOpen && (
         <S.SearchList >
-          <Search like={false} setInputValue={setInputValue} keyword={keyword}/>
+          <Search like={false} keyword={keyword}/>
         </S.SearchList>
         )}
       </S.SearchBox>

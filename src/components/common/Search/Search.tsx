@@ -5,7 +5,7 @@ import {useNavigate} from "react-router-dom";
 import { GetBrandDataRes } from "../../../services";
 
 
-export function Search({keyword, setInputValue, like} : { like:boolean, keyword:string, setInputValue: Function}) {
+export function Search({keyword, like} : { like:boolean, keyword:string, setInputValue: Function}) {
 
   const getSearchBrandList = useGetSearchBrandList();
   const [data, setData] = useState<GetBrandDataRes[] | undefined>([]);
