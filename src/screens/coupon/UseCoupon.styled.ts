@@ -6,6 +6,12 @@ export const Container = styled.div`
   width: 100%;
 `;
 
+export const ContainerBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
+`
 export const LContainer = styled.div`
   display: flex;
   flex-direction: column;

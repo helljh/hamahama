@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: start;
   margin-left: 20px;
   margin-bottom: 50px;
@@ -11,8 +12,9 @@ export const Container = styled.div`
 export const CouponGroup = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  margin-left: 2em;
+  justify-content: start;
+  margin-left: 5em;
+  width: 90%;
 `;
 
 export const Coupon = styled.div`
@@ -25,7 +27,7 @@ export const Coupon = styled.div`
   background-image: url(${process.env.PUBLIC_URL}/img/coupon/coupon.svg);
   background-size: cover;
   background-position: center;
-  margin: 0 10px 30px 50px;
+  margin: 0 30px 30px 50px;
 `;
 
 export const CouponInfo = styled.div`

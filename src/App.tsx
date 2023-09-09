@@ -33,10 +33,11 @@ export function App() {
     { path: "/user/me/used", element: <user.UsedCouponScreen /> }, // 사용한 쿠폰
     { path: "/user/me/create", element: <user.CreateCouponScreen/> }, // 등록한 쿠폰
     { path: "/user/me/favor", element: <user.FavorBrandScreen /> }, // 즐겨찾기한 브랜드
+    { path: "/user/me/comments", element: <user.CreateCommentScreen /> }, // 내가 작성한 댓글
 
     { path: "/coupon/registration", element: <coupon.CouponRegistration /> }, //쿠폰 등록
     { path: "/brand/search", element: <brand.SearchBrandScreen /> }, //브랜드 찾기
-    { path: "/brand/search/keyword", element: <brand.SearchResultScreen /> },
+    { path: "/brand/search/:keyword", element: <brand.SearchResultScreen /> },
 
     { path: "coupon/details", element: <coupon.UseCoupon /> }, //쿠폰 사용하려고 할때 나오는 화면
     { path: "/write/review", element: <WriteReview /> }, //후기 작성

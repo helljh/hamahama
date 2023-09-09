@@ -7,14 +7,18 @@ export const Container = styled.div`
 `;
 
 export const Wrapper = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   margin-top: 100px;
   margin-left: 40px;
+  *{
+    padding-left: 5px;
+  }
 `;
 
 export const Text = styled.div`
-  font-family: nanum-bold;
+  font-family: SUIT-Bold;
   font-size: 20px;
 `;
 
@@ -30,13 +34,12 @@ export const InputWrapper = styled.div`
 `;
 
 export const Input = styled.input`
-  font-family: nanum-light;
+  font-family: SUIT-Light;
   display: flex;
   outline: none;
   border: none;
   width: 480px;
   height: 50px;
-  margin-left: 5px;
 `;
 
 export const SearchIcon = styled.img`
@@ -48,7 +51,7 @@ export const SearchIcon = styled.img`
 `;
 
 export const Name = styled.input`
-  font-family: nanum-light;
+  font-family: SUIT-Light;
   display: flex;
   outline: none;
   border: 1px solid #3c87bd;
@@ -58,7 +61,7 @@ export const Name = styled.input`
 `;
 
 export const Date = styled.input`
-  font-family: nanum-light;
+  font-family: SUIT-Light;
   display: flex;
   outline: none;
   border: 1px solid #3c87bd;
@@ -68,7 +71,7 @@ export const Date = styled.input`
 `;
 
 export const Link = styled.input`
-  font-family: nanum-light;
+  font-family: SUIT-Light;
   display: flex;
   outline: none;
   border: 1px solid #3c87bd;
@@ -78,7 +81,7 @@ export const Link = styled.input`
 `;
 
 export const Code = styled.input`
-  font-family: nanum-light;
+  font-family: SUIT-Light;
   display: flex;
   outline: none;
   border: 1px solid #3c87bd;
@@ -88,7 +91,7 @@ export const Code = styled.input`
 `;
 
 export const ReviewBox = styled.div`
-  font-family: nanum-light;
+  font-family: SUIT-Light;
   display: flex;
   width: 530px;
   height: 147px;
@@ -107,7 +110,7 @@ export const User = styled.textarea`
   height: 122px;
   margin: 5px;
   border-radius: 10px;
-  font-family: nanum-light;
+  font-family: SUIT-Light;
 `;
 
 export const Put = styled.img`
@@ -121,3 +124,9 @@ export const Put = styled.img`
 export const Bottom = styled.div`
   display: flex;
 `;
+
+export const SearchList = styled.div`
+  position: absolute;
+  top: 7.5em;
+  margin-left: 1em;
+`

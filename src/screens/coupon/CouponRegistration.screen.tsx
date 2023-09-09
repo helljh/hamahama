@@ -1,13 +1,16 @@
-import { useState } from "react";
-import { usePostCreateCoupon } from "../../hooks";
+import { useState, useEffect, useRef } from "react";
+import { usePostCreateCoupon} from "../../hooks";
 import { PostCouponDataReq } from "../../services";
 import { Layout } from "../../components/common/Layout";
 import { Nav } from "../../components/common/Nav";
+import {Search} from "../../components/common/Search";
 import * as S from "./CouponRegistration.styled";
 import LeftSide from "../../components/common/Side/LeftSide";
+import { BrandName } from "./UseCoupon.styled";
 
 export function CouponRegistration() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [keyword, setKeyword] = useState<string>("");
   const [inputValues, setInputValues] = useState<PostCouponDataReq>({
     brandName: "",
     couponName: "",
@@ -16,6 +19,7 @@ export function CouponRegistration() {
     startDate: "",
     endDate: "",
     description: "",
+    email: JSON.parse(localStorage.getItem("authToken") as string).userEmail,
   });
 
   const createCoupon = usePostCreateCoupon();
@@ -23,6 +27,23 @@ export function CouponRegistration() {
   const toggleSearch = () => {
     setIsSearchOpen(!isSearchOpen);
   };
+
+  const onChangeData = (e:React.FormEvent<HTMLInputElement>) => {
+    setKeyword(e.currentTarget.value);
+    
+  }
+
+  const handleBrandNameChange = (keyword : string) => {
+    setInputValues((prevInputValues) => ({
+      ...prevInputValues,
+      brandName: keyword,
+    }));
+  };
+
+
+  
+  // 예시: "새로운 브랜드"로 brandName을 업데이트하려면
+  
 
   const handleInputChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -35,24 +56,33 @@ export function CouponRegistration() {
   };
 
   const handlePutButtonClick = () => {
+    handleBrandNameChange(keyword);
     // 사용자가 입력한 값 출력 테스트
     console.log("Input values:", inputValues);
-    createCoupon(inputValues);
+    createCoupon(inputValues).then((res)=>{
+      console.log(res);
+    });
   };
+
+  const setInputValue = (letter: string, status: boolean) => {
+    setKeyword(letter);
+    setIsSearchOpen(status);
+  }
+
 
   return (
     <Layout>
       <Nav />
       <S.Container>
         <LeftSide />
-        <S.Wrapper>
+        <S.Wrapper >
           <S.Text>쿠폰 등록</S.Text>
-          <S.InputWrapper>
+          <S.InputWrapper >
             <S.Input
               placeholder="브랜드"
               name="brandName"
-              value={inputValues.brandName}
-              onChange={handleInputChange}
+              value={keyword}
+              onChange={onChangeData}
             />
             <S.SearchIcon
               role="button"
@@ -60,11 +90,17 @@ export function CouponRegistration() {
               onClick={toggleSearch}
             />
           </S.InputWrapper>
+          {isSearchOpen && (
+        <S.SearchList >
+          <Search like={false} setInputValue={setInputValue} keyword={keyword}/>
+        </S.SearchList>
+        )}
           <S.Name
             placeholder="상품 이름"
             name="couponName"
             value={inputValues.couponName}
             onChange={handleInputChange}
+            onClick={()=>setIsSearchOpen(false)}
           />
           <S.Date
             placeholder="시작 날짜를 입력해주세요.(YYYY-MM-DD)"

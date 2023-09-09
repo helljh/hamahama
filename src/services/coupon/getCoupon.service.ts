@@ -13,4 +13,5 @@ export interface GetCouponDataRes {
   email: string;
   likeCount: number;
   dislikeCount: number;
+  likeStatus: boolean;
 }

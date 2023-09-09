@@ -1,14 +1,16 @@
 import * as S from "./Search.styled";
 import {useGetSearchBrandList} from "../../../hooks";
 import React, {useState, useEffect} from "react";
+import {useNavigate} from "react-router-dom";
 import { GetBrandDataRes } from "../../../services";
 
 
-export function Search({keyword, setInputValue} : { keyword:string, setInputValue: Function}) {
+export function Search({keyword, setInputValue, like} : { like:boolean, keyword:string, setInputValue: Function}) {
 
   const getSearchBrandList = useGetSearchBrandList();
   const [data, setData] = useState<GetBrandDataRes[] | undefined>([]);
 
+  const navigate = useNavigate();
   useEffect(() => {
     SearchBrandList();
   },[keyword])
@@ -20,14 +22,20 @@ export function Search({keyword, setInputValue} : { keyword:string, setInputValu
     })
 
   }
+  console.log(like);
 
   return (
-    <S.Container>
+    <S.Container style={like ? { width: "115px"} : {width:"500px"}}>
       <S.List>
         {/* 여기에 실제 목록 아이템을 추가하세요 */}
         {data?.map((item, index) => (
           <S.ListItem onClick={() => {
-            setInputValue(item.brandName);
+            if(like){
+              navigate(`/brand/search/${item.brandName}`)
+            }else{
+              navigate(`/coupons/${item.brandName}`)
+            }
+            
           }} key={index}>{item.brandName}</S.ListItem>
         ))}
       </S.List>

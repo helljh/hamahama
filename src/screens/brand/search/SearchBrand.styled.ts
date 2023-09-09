@@ -32,3 +32,4 @@ export const SearchButton = styled.img`
   width: 23px;
   height: 23px;
 `;
+

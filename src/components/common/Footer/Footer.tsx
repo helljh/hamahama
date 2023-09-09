@@ -12,7 +12,7 @@ export const Footer = () => {
           <strong>페이지</strong>
         </p>
         <S.Page>
-          <ul>
+          <ul >
             <li
               onClick={() => {
                 navigate("/login");
@@ -22,21 +22,21 @@ export const Footer = () => {
             </li>
             <li
               onClick={() => {
-                navigate("/login");
+                navigate("/user/me/wish");
               }}
             >
               관심상품
             </li>
             <li
               onClick={() => {
-                navigate("/login");
+                navigate("/user/me");
               }}
             >
               마이페이지
             </li>
             <li
               onClick={() => {
-                navigate("/login");
+                navigate("/user/me/used");
               }}
             >
               사용한 쿠폰

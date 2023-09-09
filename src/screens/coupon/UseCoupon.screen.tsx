@@ -15,13 +15,13 @@ export function UseCoupon() {
   const [coupon, setCoupon] = useState<GetCouponDataRes | undefined>(undefined);
   const canEditCoupon = false;
   const postLikeCoupon = usePostLikeCoupon();
-  const getLikeCoupon = usedGetLikeCoupon();
+  //const getLikeCoupon = usedGetLikeCoupon();
 
-  useEffect(() => {
-    getLikeCoupon(couponId as string).then((res) => {
-      localStorage.setItem('starClicked', JSON.stringify(!isStarClicked));
-    });
-  },[couponId, isStarClicked]);
+  // useEffect(() => {
+  //   getLikeCoupon(couponId as string).then((res) => {
+  //     localStorage.setItem('starClicked', JSON.stringify(!isStarClicked));
+  //   });
+  // },[couponId, isStarClicked]);
  
   const handleStarClick = () => {
     setIsStarClicked(!isStarClicked);
@@ -30,9 +30,9 @@ export function UseCoupon() {
 
   
 
-  const getLikeStatus = JSON.parse(localStorage.getItem("likeStatus") as string);
-  const starClicked = getLikeStatus?.starClicked;
-  const id = getLikeStatus?.couponId;
+  // const getLikeStatus = JSON.parse(localStorage.getItem("likeStatus") as string);
+  // const starClicked = getLikeStatus?.starClicked;
+  // const id = getLikeStatus?.couponId;
 
 
   
@@ -49,7 +49,11 @@ export function UseCoupon() {
 
       try {
         const res = await getCoupon(Number(couponId));
-        if (res) setCoupon(res as GetCouponDataRes);
+        if (res) {
+          setCoupon(res as GetCouponDataRes);
+          console.log(res);
+          
+        }
       } catch (error) {
         alert("쿠폰을 가져오는 중에 오류가 발생했습니다.");
         navigate("../");
@@ -86,6 +90,7 @@ export function UseCoupon() {
       <Nav />
       <S.Container>
         <LeftSide />
+        <S.ContainerBox>
         <S.LContainer>
           <S.CouponWrapper>
             <S.TextWrapper>
@@ -122,7 +127,7 @@ export function UseCoupon() {
             </S.TextWrapper2>
             <S.Star role="button" onClick={handleStarClick}>
               {/* 조건부 렌더링을 사용하여 이미지를 변경 */}
-              {isStarClicked ? (
+              {isStarClicked && !coupon.likeStatus ? (
                 <img
                 src={`${process.env.PUBLIC_URL}/icon/auth/BStar.svg`}
                 alt="BStar"
@@ -167,6 +172,7 @@ export function UseCoupon() {
             </S.User>
           )}
         </S.RContainer>
+        </S.ContainerBox>
       </S.Container>
     </Layout>
   );

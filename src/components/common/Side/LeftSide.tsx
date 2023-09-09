@@ -84,7 +84,7 @@ export function LeftSide() {
       </S.CategoryMenuBox>
       <S.CategoryMenuBox
         onClick={() => {
-          navigate("/user/me"); //작성한 후기 페이지가 어디지
+          navigate("/user/me/comments"); //작성한 후기 페이지가 어디지
         }}
       >
         <p>내 댓글</p>

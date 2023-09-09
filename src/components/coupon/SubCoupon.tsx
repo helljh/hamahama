@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import { useGetCouponList } from "../../hooks";
 import { GetCouponDataRes } from "../../services";
 import * as S from "./SubCoupon.Styled";
-import { couponData_4 } from "./tempCouponData";
+//import { couponData_4 } from "./tempCouponData";
 
 export function SubCoupon({
   active,
@@ -35,12 +35,11 @@ export function SubCoupon({
   useEffect(() => {
       getCouponList(brandName).then((res) => {
         if (res) {
+          console.log(res);
           setCouponData(res);
           const groups = mapDataInGroups(groupSize, couponData);
           setGroups(groups);
         } else {
-          const groups = mapDataInGroups(groupSize, couponData_4.flat());
-          setGroups(groups);
           alert("쿠폰 정보가 없습니다.");
         }
       });

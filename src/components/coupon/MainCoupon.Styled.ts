@@ -5,6 +5,7 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-self: flex-start;
+  height: auto;
 `;
 
 export const CouponGroup = styled.div`

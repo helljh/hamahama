@@ -41,6 +41,7 @@ export const LikeText = styled.div`
 
 export const Link = styled.a`
   text-decoration: none;
+  color:black;
 `;
 export const TextGroup = styled.div`
   display: flex;
@@ -50,11 +51,21 @@ export const TextGroup = styled.div`
 `;
 
 export const MyCoupon = styled.div`
+  position:relative;
   width: 100%;
 `;
 
 export const Line = styled.div`
-  width: auto;
+  width: 95%;
   border: 1px solid #3c87bd;
   margin: 0 0 70px 50px;
 `;
+
+
+export const SearchList = styled.div`
+  position: absolute;
+  top: 8em;
+  left: 85%;
+  margin-left: 1.5em;
+  z-index: 2;
+`

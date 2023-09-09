@@ -7,9 +7,16 @@ export function usePostCreateCoupon() {
   const navigate = useNavigate();
   const postCreateCoupon = async (data: PostCouponDataReq) => {
     try {
-      await axiosInstance.post("/coupon/create", data, {});
-      alert("쿠폰 등록이 완료되었습니다.");
-      navigate(`/main`);
+      const res = await axiosInstance.post("/coupon/create", data, {
+        headers: { "Content-type": "application/json" }
+      });
+      if(res){
+        alert("쿠폰 등록이 완료되었습니다.");
+        navigate("/main");
+        return res;
+      }
+      
+      
     } catch (error) {
       console.log("쿠폰등록:" + error);
     }
@@ -22,7 +29,9 @@ export function usePutUpdateCoupon() {
   const navigate = useNavigate();
   const putUpdateCoupon = async (couponId: string, data: PostCouponDataReq) => {
     try {
-      await axiosInstance.put(`/coupon/${couponId}/update`, data, {});
+      const res = await axiosInstance.put(`/coupon/${couponId}/update`, data, {
+        headers: { "Content-type": "application/json" }
+      });
       alert("쿠폰 수정이 완료되었습니다.");
       navigate(`/usecoupon/${couponId}`);
     } catch (error) {

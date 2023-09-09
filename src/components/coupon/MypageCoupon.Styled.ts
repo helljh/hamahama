@@ -13,6 +13,7 @@ export const CouponGroup = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin-left: 2em;
 `;
 
 export const Coupon = styled.div`
@@ -20,12 +21,12 @@ export const Coupon = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 230px;
-  height: 100px;
+  width: 250px;
+  height: 110px;
   background-image: url(${process.env.PUBLIC_URL}/img/coupon/coupon.svg);
   background-size: cover;
   background-position: center;
-  margin: 0 10px 30px 50px;
+  margin: 0 1em 30px 50px;
 `;
 
 export const CouponInfo = styled.div`
@@ -57,8 +58,10 @@ export const DateText = styled.p`
 
 export const BrandImgBox = styled.div`
   position: absolute;
-  left: 9.5em;
-  top: 1.0em;
+  left: 10.5em;
+  top: 1.5em;
+  border-radius: 100%;
+
 `;
 
 export const BrandImg = styled.img`
@@ -71,7 +74,7 @@ export const BrandImg = styled.img`
 
 export const ButtonBox = styled.div`
     position: absolute;
-    left: 95%;
+    left: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;

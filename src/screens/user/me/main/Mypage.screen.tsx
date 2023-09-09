@@ -5,8 +5,10 @@ import {
   Screen,
   MyPageBrand,
   LeftSide,
+  Comment,
 } from "../../../../components";
 import * as S from "./MyPage.styled";
+import { TransformStreamDefaultController } from "node:stream/web";
 
 export function MyPageScreen() {
   const navigate = useNavigate();
@@ -86,7 +88,21 @@ export function MyPageScreen() {
               </S.ViewText>
             </S.TextGroup>
             <S.Line />
-            <MyPageBrand order={"likeBrand"} />
+            <MyPageBrand btnStatus={true} order={"likeBrand"} />
+          </S.MyCoupon>
+          <S.MyCoupon>
+            <S.TextGroup>
+              <S.Text>댓글</S.Text>
+              <S.ViewText
+                onClick={() => {
+                  navigate("./comments");
+                }}
+              >
+                전체 보기
+              </S.ViewText>
+            </S.TextGroup>
+            <S.Line />
+            <Comment btnStatus={true} order={"createComment"}/>
           </S.MyCoupon>
         </S.Container>
       </S.Layout>

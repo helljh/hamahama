@@ -4,15 +4,16 @@ import { tempBrandData } from "../../components";
 
 //브랜드 상세 조회
 export function useGetBrand() {
-  const getBrand = async (brandId: number) => {
+  const email = JSON.parse(localStorage.getItem("authToken") as string).userEmail
+  const getBrand = async (brandName: string) => {
     try {
-      const res: GetBrandDataRes = await axiosInstance.get(
-        `/brand?brandId=${brandId}`,
+      const res = await axiosInstance.get<GetBrandDataRes>(
+        `/brand/${email}/${brandName}`,
         {
           headers: { "Content-type": "application/json" },
         }
       );
-      return res;
+      return res.data;
     } catch (error) {
       console.log(error);
       return;
@@ -76,4 +77,7 @@ export function useGetSearchBrandList() {
   };
   return getSearchBrandList;
 }
+
+
+
 

@@ -3,4 +3,5 @@ export interface GetBrandDataRes {
   brandName: string;
   brandImgUrl: string;
   category: string;
+  likeStatus: boolean;
 }

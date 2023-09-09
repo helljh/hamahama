@@ -7,4 +7,5 @@ export interface PostCouponDataReq {
   startDate: string;
   endDate: string;
   description: string;
+  email: string;
 }

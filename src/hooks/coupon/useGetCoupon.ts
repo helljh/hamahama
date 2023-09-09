@@ -4,10 +4,11 @@ import { GetCouponDataRes } from "../../services";
 
 //쿠폰 상세 페이지 - 단일 쿠폰 조회
 export function useGetCoupon() {
+  const email = JSON.parse(localStorage.getItem("authToken")as string).userEmail;
   const getCoupon = async (couponId: number) => {
     try {
       const response = await axiosInstance.get<GetCouponDataRes>(
-        `/coupon/${couponId}`
+        `/coupon/${email}/${couponId}`
       );
       if (response) {
         return response.data;

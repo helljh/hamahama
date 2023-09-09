@@ -18,7 +18,7 @@ export function FavorBrandScreen() {
             </S.LikeText>
           </S.TextGroup>
           <S.Line />
-          <MyPageBrand order={"likeBrand"} />
+          <MyPageBrand btnStatus={false} order={"likeBrand"} />
         </S.MyCoupon>
       </S.Layout>
     </Screen>

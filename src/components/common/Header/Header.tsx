@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import * as S from "./Header.styled";
 import Sidebar from "../Side/Sidebar";
 import { Search } from "../Search";
@@ -20,31 +20,31 @@ export const Header = ({
   const [isBellOpen, setIsBellOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [keyword, setKeyword] = useState<string>("");
-  const [inputKeyword, setInputKeyword] = useState<string>("");
+  const [exist, setExist] = useState<boolean>(false);
 
-  const outside = useRef<any>(null);
+  const outside = useRef<HTMLDivElement | null>(null);
+
+  // const getBrandNameExists = useGetBrandNameExists();
 
   const onChangeData = (e:React.FormEvent<HTMLInputElement>) => {
     setKeyword(e.currentTarget.value);
-    if(e.currentTarget.value.length != 0) {
-      setIsSearchOpen(true);
-    }else{
-      setIsSearchOpen(false);
-    }
   }
 
   // useEffect(() => {
-  //   document.addEventListener("mousedown", handlerOutsie);
-  //   return () => {
-  //     document.removeEventListener("mousedown", handlerOutsie);
+  //   const handlerOutside = (e: {target:any}) => {
+  //     if (isSearchOpen && (!outside.current?.contains(e.target))) {
+  //       setIsSearchOpen(true);
+  //       setKeyword("");
+  //     }
   //   };
-  // });
 
-  // const handlerOutsie = (e: any) => {
-  //   if (outside.current && !outside.current.contains(e.target as Node)) {
-  //     setIsSearchOpen(false);
-  //   }
-  // };
+  //   document.addEventListener("mousedown", handlerOutside, true);
+  //   return () => {
+  //     document.removeEventListener("mousedown", handlerOutside, true);
+  //   };
+  // }, [outside, isSearchOpen]);
+
+  
 
   
   const toggleSide = () => {
@@ -60,27 +60,35 @@ export const Header = ({
     }
   };
 
+  // useEffect(() => {
+  //   getBrandNameExists(keyword).then((res)=>{
+  //     setExist(res?.data);
+  //   });
+  // });
+
   const toggleSearch = () => {
+    console.log("clicked");
+    
     setIsSearchOpen(!isSearchOpen);
-    if(inputKeyword.length !=0){
-      navigate(`/coupons/${inputKeyword}`)
-    }else{
-      navigate(`/coupons/${keyword}`)
-    }
-   
+    // if(exist){
+    //   navigate(`/coupons/${keyword}`);
+    // }else{
+    //   alert("해당 브랜드는 존재하지 않습니다")
+    // }
   };
 
-  const setInputValue = (x: string) => {
-    setInputKeyword(x);
+  const setInputValue = (letter: string, status: boolean) => {
+    setKeyword(letter);
+    setIsSearchOpen(status);
   }
 
   return (
     <S.Container>
       <Link to={"/main"}><S.Logo src={`${process.env.PUBLIC_URL}/img/header/logo.svg`} /></Link>
-      <S.SearchBox>
+      <S.SearchBox >
       <S.InputWrapper>
         <S.Input 
-        value={inputKeyword.length > 0 ? inputKeyword : keyword}
+        value={keyword}
         onChange={onChangeData}
         />
         <S.Button onClick={toggleSearch}>
@@ -91,8 +99,8 @@ export const Header = ({
         
       </S.InputWrapper>
       {isSearchOpen && (
-        <S.SearchList>
-          <Search setInputValue={setInputValue} keyword={keyword}/>
+        <S.SearchList >
+          <Search like={false} setInputValue={setInputValue} keyword={keyword}/>
         </S.SearchList>
         )}
       </S.SearchBox>

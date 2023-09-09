@@ -23,10 +23,10 @@ export function useGetLikeBrand() {
   const initialData = JSON.parse(authToken as string);
   const getLikeBrand = async () => {
     try {
-      const res: GetBrandDataRes[] = await axiosInstance.get(
+      const res = await axiosInstance.get<GetBrandDataRes[]>(
         `mypage/likeBrand?email=${initialData.userEmail}`
       );
-      return res;
+      return res.data;
     } catch (error) {
       console.log(error);
       return;

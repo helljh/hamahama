@@ -19,7 +19,9 @@ export const Logo = styled.img`
   margin: 50px 100px 50px 20px;
 `;
 
-export const Page = styled.div``;
+export const Page = styled.div`
+  cursor:pointer;
+`;
 
 export const Email = styled.div``;
 

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import {useNavigate} from "react-router-dom";
 import { useGetOrderByCoupon } from "../../hooks";
 import { GetCouponDataRes } from "../../services";
-import { couponData_3 } from "./";
+//import { couponData_3 } from "./";
 import * as S from "./MainCoupon.Styled";
 
 export function MainCoupon({ orderBy }: { orderBy: string }) {
@@ -10,6 +11,7 @@ export function MainCoupon({ orderBy }: { orderBy: string }) {
   const [groups, setGroups] = useState<GetCouponDataRes[][]>([]);
   const orderByCoupon = useGetOrderByCoupon();
 
+  const navigate = useNavigate();
   const mapDataInGroups = (
     groupSize: number,
     couponData: GetCouponDataRes[]
@@ -32,8 +34,6 @@ export function MainCoupon({ orderBy }: { orderBy: string }) {
         const groups = mapDataInGroups(groupSize, couponData);
         setGroups(groups);
       } else {
-        const groups = mapDataInGroups(groupSize, couponData_3.flat());
-        setGroups(groups);
         alert("쿠폰 정보가 없습니다.");
         console.log(groups);
       }
@@ -45,7 +45,9 @@ export function MainCoupon({ orderBy }: { orderBy: string }) {
       {groups.map((group, groupIndex) => (
         <S.CouponGroup key={groupIndex}>
           {group.map((coupon: GetCouponDataRes, idx: number) => (
-            <S.Coupon key={idx}>
+            <S.Coupon key={idx}  onClick={()=>{
+              navigate(`/coupon/details?couponId=${coupon.couponId}`);
+            }}>
               <S.CouponInfo>
                 <S.BrandText>{coupon.brandName}</S.BrandText>
                 <S.Text>{coupon.couponName}</S.Text>

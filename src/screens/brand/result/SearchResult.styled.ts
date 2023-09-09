@@ -45,6 +45,7 @@ export const BrandImg = styled.img`
   width: 120px;
   height: 120px;
   margin-right: 50px;
+  border-radius: 100%;
 `;
 
 export const BrandInfo = styled.div`
@@ -56,7 +57,7 @@ export const BrandInfo = styled.div`
 export const Button = styled.button<{ favor: boolean }>`
   background-color: ${(props) => (props.favor ? "#3c87bd" : "white")};
   color: ${(props) => (props.favor ? "white" : "black")};
-  border-color: ${(props) => (props.favor ? "none" : "#3c87bd")};
+  border: ${(props) => (props.favor ? "none" : "1px solid #3c87bd")};
   border-radius: 20px;
   width: 108.15px;
   height: 34.92px;

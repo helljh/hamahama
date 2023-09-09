@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 500px;
-  height: auto;
+  height: 300px;
   word-break: break-all;
   background-color: white;
   border: 1px solid #3c87bd;
@@ -11,9 +11,10 @@ export const Container = styled.div`
 `;
 
 export const List = styled.div`
+  font-family: SUIT-Light;
   display: flex;
   flex-direction: column;
-  width: 100%; 
+  width: 100%;
   cursor: pointer;
   :hover{
     font-family: SUIT-Bold;

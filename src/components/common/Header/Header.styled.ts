@@ -66,7 +66,10 @@ export const SearchBox = styled.div`
 `;
 
 export const SearchList = styled.div`
+  position: absolute;
+  top: 5em;
   margin-left: 1em;
+  z-index: 2;
 `
 export const SubWrapper = styled.div`
   margin-top: 1em;

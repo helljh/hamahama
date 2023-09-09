@@ -39,7 +39,7 @@ export function CenterScreen() {
           <S.Text>최신 댓글</S.Text>
           <S.ViewText>전체보기</S.ViewText>
         </S.TextGroup>
-        <MainComment />
+        <MainComment/>
       </S.Category>
     </S.Container>
   );
