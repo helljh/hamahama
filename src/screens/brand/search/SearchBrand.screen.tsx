@@ -42,7 +42,7 @@ export function SearchBrandScreen() {
             </C.SearchContainer>
             {isSearchOpen && (
             <S.SearchList >
-              <Search  like={true} setInputValue={setInputValue} keyword={keyword}/>
+              <Search  screen={"registration"} inputValue={setInputValue} keyword={keyword}/>
             </S.SearchList>
             )}
           </S.TextGroup>

@@ -98,18 +98,22 @@ export function LoginScreen() {
         </div>
       </S.Find>
       <div>
+        <Link to={"http://localhost:8088/oauth2/authorization/kakao"}>
         <S.SocialIcon
           alt="kakao_Icon.png"
           src={`${process.env.PUBLIC_URL}/icon/social/kakao_Icon.png`}
         />
+        </Link>
+        <Link to={"http://localhost:8088/oauth2/authorization/naver"}>
         <S.SocialIcon
           alt="naver_Icon.png"
           src={`${process.env.PUBLIC_URL}/icon/social/naver_Icon.png`}
-        />
+        /></Link>
+        <Link to={"http://localhost:8088/oauth2/authorization/google"}>
         <S.SocialIcon
           alt="google_Icon.png"
           src={`${process.env.PUBLIC_URL}/icon/social/google_Icon.png`}
-        />
+        /></Link>
       </div>
     </S.Container>
   );

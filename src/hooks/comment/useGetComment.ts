@@ -26,10 +26,8 @@ export function useGetComment() {
 export function useGetCommentList() {
   const getCommentList = async () => {
     try {
-      const res: GetCommentDataRes[] = await axiosInstance.get("comment/list", {
-        headers: { "Content-type": "application/json" },
-      });
-      return res;
+      const res = await axiosInstance.get<GetCommentDataRes[]>("/comments");
+      return res.data;
     } catch (error) {
       console.log(error);
       return;

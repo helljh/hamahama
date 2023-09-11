@@ -24,7 +24,7 @@ export function WriteReview() {
       }
 
       try {
-        const res = await getCoupon(Number(couponId));
+        const res = await getCoupon(couponId);
         if (res) setCoupon(res as GetCouponDataRes);
       } catch (error) {
         alert("쿠폰을 가져오는 중에 오류가 발생했습니다.");

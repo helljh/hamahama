@@ -12,7 +12,8 @@ export function usePostCreateCoupon() {
       });
       if(res){
         alert("쿠폰 등록이 완료되었습니다.");
-        navigate("/main");
+        console.log(res);
+        navigate(`/coupon/details?couponId=${res.data}`);
         return res;
       }
       
@@ -33,7 +34,7 @@ export function usePutUpdateCoupon() {
         headers: { "Content-type": "application/json" }
       });
       alert("쿠폰 수정이 완료되었습니다.");
-      navigate(`/usecoupon/${couponId}`);
+      navigate(`/coupon/details?couponId=${couponId}`);
     } catch (error) {
       console.log(error);
     }

@@ -46,7 +46,7 @@ export function IdInquiryScreen() {
       <S.Button
         onClick={() => {
           resetPassword(postReq).then((res)=>{
-            navigate("/user/help/pwInquiry");
+            alert("입력하신 이메일로 비밀번호 변경 메일을 발송해드렸습니다. 해당 메일로 이동하여 비밀번호 변경을 해주시기 바랍니다.")
           });
         }}
         disabled={!isEmailValid(email)}

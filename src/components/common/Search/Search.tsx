@@ -5,7 +5,7 @@ import {useNavigate} from "react-router-dom";
 import { GetBrandDataRes } from "../../../services";
 
 
-export function Search({keyword, like} : { like:boolean, keyword:string, setInputValue: Function}) {
+export function Search({keyword, screen, inputValue} : { screen:string, keyword:string, inputValue: Function}) {
 
   const getSearchBrandList = useGetSearchBrandList();
   const [data, setData] = useState<GetBrandDataRes[] | undefined>([]);
@@ -20,20 +20,24 @@ export function Search({keyword, like} : { like:boolean, keyword:string, setInpu
       console.log(res);
       setData(res);
     })
-
   }
-  console.log(like);
+
+  
+
+
 
   return (
-    <S.Container style={like ? { width: "115px"} : {width:"500px"}}>
+    <S.Container style={screen == "registration" ? { width: "115px"} : {width:"500px"}}>
       <S.List>
         {/* 여기에 실제 목록 아이템을 추가하세요 */}
         {data?.map((item, index) => (
           <S.ListItem onClick={() => {
-            if(like){
+            if(screen === "header"){
+              navigate(`/coupons/${item.brandName}`)
+            }else if(screen === "registration"){
               navigate(`/brand/search/${item.brandName}`)
             }else{
-              navigate(`/coupons/${item.brandName}`)
+              inputValue(item.brandName, false);
             }
             
           }} key={index}>{item.brandName}</S.ListItem>

@@ -1,3 +1,4 @@
+import {Link} from "react-router-dom";
 import { MainCoupon, MainComment } from "../../../components";
 import * as S from "./Center.styled";
 export function CenterScreen() {
@@ -30,14 +31,14 @@ export function CenterScreen() {
         <S.Text>신규 쿠폰</S.Text>
         <S.BlueContainer>
           <S.CouponContainer>
-            <MainCoupon orderBy={"popularity"} />
+            <MainCoupon orderBy={"createdDate"} />
           </S.CouponContainer>
         </S.BlueContainer>
       </S.Category>
       <S.Category>
         <S.TextGroup>
           <S.Text>최신 댓글</S.Text>
-          <S.ViewText>전체보기</S.ViewText>
+          <Link style={{color:"black", textDecoration: "none"}} to={"/allComments"}><S.ViewText >전체보기</S.ViewText></Link>
         </S.TextGroup>
         <MainComment/>
       </S.Category>

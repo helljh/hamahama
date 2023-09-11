@@ -35,7 +35,7 @@ export function App() {
     { path: "/user/me/favor", element: <user.FavorBrandScreen /> }, // 즐겨찾기한 브랜드
     { path: "/user/me/comments", element: <user.CreateCommentScreen /> }, // 내가 작성한 댓글
 
-    { path: "/coupon/registration", element: <coupon.CouponRegistration /> }, //쿠폰 등록
+    { path: "/coupon/registration/:couponId", element: <coupon.CouponRegistration /> }, //쿠폰 등록
     { path: "/brand/search", element: <brand.SearchBrandScreen /> }, //브랜드 찾기
     { path: "/brand/search/:keyword", element: <brand.SearchResultScreen /> },
 

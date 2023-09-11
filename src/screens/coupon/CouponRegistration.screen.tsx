@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
-import { usePostCreateCoupon} from "../../hooks";
-import { PostCouponDataReq } from "../../services";
+import {useParams} from "react-router-dom";
+import { usePostCreateCoupon, usePutUpdateCoupon, useGetCoupon} from "../../hooks";
+import { PostCouponDataReq , GetCouponDataRes} from "../../services";
 import { Layout } from "../../components/common/Layout";
 import { Nav } from "../../components/common/Nav";
 import {Search} from "../../components/common/Search";
@@ -9,6 +10,8 @@ import LeftSide from "../../components/common/Side/LeftSide";
 import { BrandName } from "./UseCoupon.styled";
 
 export function CouponRegistration() {
+  const {couponId} = useParams();
+  const [coupon, setCoupon] = useState<GetCouponDataRes | undefined>(undefined)
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [keyword, setKeyword] = useState<string>("");
   const [inputValues, setInputValues] = useState<PostCouponDataReq>({
@@ -23,6 +26,20 @@ export function CouponRegistration() {
   });
 
   const createCoupon = usePostCreateCoupon();
+  const updateCoupon = usePutUpdateCoupon();
+  const getCouponInfo = useGetCoupon();
+
+  useEffect(()=>{
+    if(couponId !== "save"){
+      getCouponInfo(couponId as string).then((res)=>{
+        console.log(res);
+        setCoupon(res as GetCouponDataRes);
+        handleChange(res as GetCouponDataRes);
+        setKeyword((res as GetCouponDataRes).brandName);
+      })
+    }
+  }, [couponId]);
+  
 
   const toggleSearch = () => {
     setIsSearchOpen(!isSearchOpen);
@@ -37,6 +54,19 @@ export function CouponRegistration() {
     setInputValues((prevInputValues) => ({
       ...prevInputValues,
       brandName: keyword,
+    }));
+  };
+
+  const handleChange = (coupon : GetCouponDataRes) => {
+    setInputValues((prevInputValues) => ({
+      ...prevInputValues,
+      brandName: coupon.brandName,
+      couponName: coupon.couponName,
+      couponCode: coupon.couponCode,
+      couponUrl: coupon.couponUrl,
+      startDate: coupon.startDate,
+      endDate: coupon.endDate,
+      description: coupon.description,
     }));
   };
 
@@ -56,16 +86,23 @@ export function CouponRegistration() {
   };
 
   const handlePutButtonClick = () => {
-    handleBrandNameChange(keyword);
+    
     // 사용자가 입력한 값 출력 테스트
     console.log("Input values:", inputValues);
-    createCoupon(inputValues).then((res)=>{
-      console.log(res);
+    if(couponId === "save"){
+      createCoupon(inputValues).then((res)=>{
+        console.log(res);
+      });
+    }else{
+      updateCoupon(couponId as string, inputValues).then((res)=>{
+        console.log(res);
     });
   };
+}
 
   const setInputValue = (letter: string, status: boolean) => {
     setKeyword(letter);
+    handleBrandNameChange(letter);
     setIsSearchOpen(status);
   }
 
@@ -92,7 +129,7 @@ export function CouponRegistration() {
           </S.InputWrapper>
           {isSearchOpen && (
         <S.SearchList >
-          <Search like={false} setInputValue={setInputValue} keyword={keyword}/>
+          <Search screen={"registration"} inputValue={setInputValue} keyword={keyword}/>
         </S.SearchList>
         )}
           <S.Name

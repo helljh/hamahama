@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import {useNavigate} from "react-router-dom";
 import { useGetMyPageCoupon } from "../../hooks";
 import { GetCouponDataRes } from "../../services";
 import * as S from "./MyPageCouponDetail.Styled";
@@ -16,6 +17,7 @@ export function MyPageCouponDetail({
   const [coupon, setCoupon] = useState<GetCouponDataRes[]>([]);
   const [groups, setGroups] = useState<GetCouponDataRes[][]>([]);
   const getCouponList = useGetMyPageCoupon();
+  const navigate = useNavigate();
 
   const mapDataInGroups = (
     groupSize: number,
@@ -46,7 +48,7 @@ export function MyPageCouponDetail({
       {groups.map((group, groupIndex) => (
         <S.CouponGroup key={groupIndex}>
           {group.map((coupon: GetCouponDataRes, idx: number) => (
-            <S.Coupon key={idx}>
+            <S.Coupon onClick={()=>navigate(`/coupon/details?couponId=${coupon.couponId}`)}key={idx}>
               <S.CouponInfo>
                 <S.BrandText>
                   {coupon.brandName}

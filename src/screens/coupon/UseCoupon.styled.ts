@@ -203,6 +203,8 @@ export const User = styled.div`
   margin-top: 30px;
   margin-left: 270px;
   display: flex;
+  flex-direction: row;
+  justify-content: end;
 `;
 
 export const Edit = styled.img`

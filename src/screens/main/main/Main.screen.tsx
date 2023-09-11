@@ -1,8 +1,25 @@
 import styled from "styled-components";
 import { Header } from "../../../components/common";
+import {useLocation, useSearchParams} from "react-router-dom";
 import { Screen } from "../../../components";
 import { HomeScreen, CenterScreen } from "../../main";
 export function MainScreen() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const email = searchParams.get("email");
+  console.log(window.location.search);
+  console.log("email = " + email);
+  
+  if(window.location.search.length != 0){
+    const auth = {
+      accessToken: searchParams.get("accessToken"),
+      refreshToken: searchParams.get("refreshToken"),
+      isAuthenticated: true,
+      userEmail: email,
+    };
+    localStorage.setItem("authToken", JSON.stringify(auth));
+  }
+ 
+
   const isAuthenticated = true; // 예시 값
 
   const logout = () => {

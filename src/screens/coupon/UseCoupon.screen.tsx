@@ -6,6 +6,7 @@ import { GetCouponDataRes } from "../../services";
 import { Layout } from "../../components/common/Layout";
 import { Nav } from "../../components/common/Nav";
 import LeftSide from "../../components/common/Side/LeftSide";
+import { constants } from "buffer";
 
 export function UseCoupon() {
   const [searchParams] = useSearchParams();
@@ -15,6 +16,8 @@ export function UseCoupon() {
   const [coupon, setCoupon] = useState<GetCouponDataRes | undefined>(undefined);
   const canEditCoupon = false;
   const postLikeCoupon = usePostLikeCoupon();
+
+  
   //const getLikeCoupon = usedGetLikeCoupon();
 
   // useEffect(() => {
@@ -28,6 +31,7 @@ export function UseCoupon() {
     postLikeCoupon(couponId as string);
   };
 
+  const email = JSON.parse(localStorage.getItem('authToken') as string).userEmail;
   
 
   // const getLikeStatus = JSON.parse(localStorage.getItem("likeStatus") as string);
@@ -40,6 +44,7 @@ export function UseCoupon() {
   const getMyPageCoupon = useGetMyPageCoupon();
 
   useEffect(() => {
+
     const fetchCoupon = async () => {
       if (!couponId) {
         alert("유효하지 않은 쿠폰입니다.");
@@ -48,14 +53,14 @@ export function UseCoupon() {
       }
 
       try {
-        const res = await getCoupon(Number(couponId));
+        const res = await getCoupon(couponId);
         if (res) {
           setCoupon(res as GetCouponDataRes);
           console.log(res);
           
         }
       } catch (error) {
-        alert("쿠폰을 가져오는 중에 오류가 발생했습니다.");
+        console.log(error);
         navigate("../");
       }
     };
@@ -63,13 +68,16 @@ export function UseCoupon() {
     fetchCoupon();
   }, [couponId, navigate]);
 
-  useEffect(() => {
-    getMyPageCoupon(""); // 이 부분은 의도치 않은 호출로 보입니다. 의존성 배열이 필요합니다.
-  }, []); // 빈 의존성 배열을 사용하여 한 번만 실행되도록 변경
+  // useEffect(() => {
+    
+  //   recentCoupons.push(coupon);
+  //   recentCoupons = new Set(recentCoupons);
+  //   recentCoupons = [...recentCoupons];
+  //   localStorage.setItem("recentCoupons", JSON.stringify(recentCoupons));
+  // }, []); // 빈 의존성 배열을 사용하여 한 번만 실행되도록 변경
 
-  const handleEdit = () => {
-    console.log("수정하기 버튼이 클릭되었습니다.");
-    // 여기에 실제 수정하는 로직을 추가할 수 있습니다.
+  const handleEdit = ({couponId} : {couponId : number}) => {
+   
   };
 
   const handleRegister = () => {
@@ -127,7 +135,7 @@ export function UseCoupon() {
             </S.TextWrapper2>
             <S.Star role="button" onClick={handleStarClick}>
               {/* 조건부 렌더링을 사용하여 이미지를 변경 */}
-              {isStarClicked && !coupon.likeStatus ? (
+              {!isStarClicked || !coupon.likeStatus ? (
                 <img
                 src={`${process.env.PUBLIC_URL}/icon/auth/BStar.svg`}
                 alt="BStar"
@@ -157,17 +165,14 @@ export function UseCoupon() {
           </S.SatisfactionBox>
           <S.Number>{coupon.couponCode}</S.Number>
           <S.ReviewPage>제품 후기</S.ReviewPage>
-          {canEditCoupon && (
+          {email === coupon.email && (
             <S.User>
               <S.Edit
                 src={`${process.env.PUBLIC_URL}/icon/auth/edit.svg`}
                 role="button"
-                onClick={handleEdit}
-              />
-              <S.Save
-                src={`${process.env.PUBLIC_URL}/icon/auth/save.svg`}
-                role="button"
-                onClick={handleRegister}
+                onClick={() => {
+                  navigate(`../coupon/registration/${coupon.couponId}`)
+                }}
               />
             </S.User>
           )}
